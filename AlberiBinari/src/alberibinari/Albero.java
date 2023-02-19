@@ -224,9 +224,35 @@ public class Albero {
         }
         return nodo1.getInfo() == nodo2.getInfo() || haDueFigliUguali(nodo1.getSX(), nodo2.getSX()) || haDueFigliUguali(nodo1.getDX(), nodo2.getDX());
     }
-
-
     
+    
+    // elimina tutti i nodi sotto la radice Nodo
+    public void eliminaNodi(int valore){ eliminaNodi(trovaNodo(root, valore)); }
+    private void eliminaNodi(Nodo root){
+        if (root == null) {
+            return;
+        }
+        
+        eliminaNodi(root.getSX());
+        eliminaNodi(root.getDX());
+        root.setSX(null);
+        root.setDX(null);
+    }
+    
+    
+    // somma di tutti i valori dei nodi
+    public int sommaValoriNodi(){ return sommaValoriNodi(root); }
+    private int sommaValoriNodi(Nodo root){
+        if (root == null) {
+            return 0;
+        }
+        
+        int leftSum = sommaValoriNodi(root.getSX());
+        int rightSum = sommaValoriNodi(root.getDX());
+        return root.getInfo() + leftSum + rightSum;
+    }
+
+  
     
     
     

@@ -66,6 +66,14 @@ public class AlberiBinari {
         // ci sono nodi con due figli uguali?
         System.out.println("\nNodi con 2 figli identici (boolean): " + x.haDueFigliUguali());
         
+        // elimina nodi
+        x.eliminaNodi(randNodo);
+        System.out.println("\nEliminati nodi sotto (int)Nodo: " + randNodo);
+        
+        // ci sono nodi con due figli uguali?
+        System.out.println("(int)Somma di tutti i valori dei nodi dell'albero: " + x.sommaValoriNodi());
+        
+        // end program
         System.out.println();
     }
 }
