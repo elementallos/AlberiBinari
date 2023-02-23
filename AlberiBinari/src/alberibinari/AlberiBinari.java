@@ -19,7 +19,7 @@ public class AlberiBinari {
         int randNodo = random.nextInt(100);
         
         // random arrays for testing
-        int oneTo100[] = {
+        int a[] = {
             
             22, 66, 83, 77, 32, 54, 60, 90, 45, 12, 
             34, 73, 27, 58, 89, 38, 59, 17, 14, 35, 
@@ -33,55 +33,18 @@ public class AlberiBinari {
             49, 80, 33, 63, 37, 26
 
         };
-        int randomArr[] = {
-            1, 9, 4, 7, 2, 3, 8, 0, 6, 3
+        int b[] = {
+            4, 3, 5
         };
         
         
         // actual program -->
-        Albero x = new Albero(new Nodo(randomArr[0]));
-        for(int n: randomArr){
+        Albero x = new Albero(new Nodo(b[0]));
+        for(int n: b){
             x.inserisciNodo(n);
         }
         
-        // duplica l'albero
-        Albero y = x.duplicaAlbero();
-        System.out.println("Albero duplicato!");
-        
-        // stampa l'altezza dell'albero
-        System.out.println("Altezza dell\'albero: " + x.getAltezza());
-        
-        // stampa la posizione di un nodo (livello)
-        System.out.println("(int)Nodo: " + randNodo + " al livello  " + x.getNodo(randNodo));
-        
-        // stampa il numero di foglie (nodi senza successori / figli)
-        System.out.println("Numero totale di foglie dell'albero: " + x.contaFoglie());
-        
-        // stampa il numero di nodi intermedi, dato un nodo
-        System.out.println("Nodi intermedi di (int)Nodo: " + randNodo + " --> " + x.contaNodi(randNodo));
-        
-        // le foglie sono allo stesso livello?
-        System.out.println("Foglie allo stesso livello: " + x.livelloFoglieUguale());
-        
-        // stampa antenati di un certo nodo (dato il valore int)
-        System.out.println("\nAntenati di (int)Nodo: " + randNodo);
-        x.stampaAntenati(randNodo);
-        
-        // ci sono nodi con due figli uguali?
-        System.out.println("\nNodi con 2 figli identici (boolean): " + x.haDueFigliUguali());
-        
-        // elimina nodi
-        x.eliminaNodi(randNodo);
-        System.out.println("\nEliminati nodi sotto (int)Nodo: " + randNodo);
-        
-        // ci sono nodi con due figli uguali?
-        System.out.println("(int)Somma di tutti i valori dei nodi dell'albero: " + x.sommaValoriNodi());
-        
-        // stampa tutte le foglie dell'albero
-        x.stampaFoglie();
-        
-        
-        // end program
-        System.out.println();
+        // test ->
+        System.out.println("\n\n\n\n\n\t\tHey there!\n\n\n\n\n");
     }
 }

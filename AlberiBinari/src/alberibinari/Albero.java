@@ -160,41 +160,26 @@ public class Albero {
     
     /*     TRUE: foglie allo stesso livello        *
      *     FALSE: foglie a livelli sfalsati        */
-    public boolean livelloFoglieUguale(){ return livelloFoglieUguale(root); }
-    private boolean livelloFoglieUguale(Nodo root){
+    public boolean controllaLivFoglie(){ return controllaLivFoglie(root); }
+    public boolean controllaLivFoglie(int valore){ return controllaLivFoglie(trovaNodo(root, valore)); }
+    private boolean controllaLivFoglie(Nodo root){
         if (root == null) {
             return true;
         }
-        
-        ArrayList<Nodo> queue = new ArrayList<>();
-        ArrayList<Integer> levels = new ArrayList<>();
-        queue.add(root);
-        levels.add(0);
-        int expectedLevel = -1;
-        int firstLeafLevel = -1;
-        int i = 0;
-        while (i < queue.size()) {
-            Nodo node = queue.get(i);
-            int level = levels.get(i);
-            i++;
-            if (node.getSX() == null && node.getDX() == null) {
-                if (firstLeafLevel == -1) {
-                    firstLeafLevel = level;
-                } else if (level != firstLeafLevel) {
-                    return false;
-                }
-            }
-            if (node.getSX() != null) {
-                queue.add(node.getSX());
-                levels.add(level + 1);
-            }
-            if (node.getDX() != null) {
-                queue.add(node.getDX());
-                levels.add(level + 1);
-            }
+
+        if (root.getSX() == null && root.getDX() == null) {
+            return true;
         }
-        return true;
+
+        int leftDepth = getAltezza(root.getSX());
+        int rightDepth = getAltezza(root.getDX());
+        if (leftDepth != rightDepth) {
+            return false;
+        }
+
+        return controllaLivFoglie(root.getSX()) && controllaLivFoglie(root.getDX());
     }
+
     
     
     // stampa tutti gli antenati
@@ -334,6 +319,44 @@ public class Albero {
         }
         return nodo;
     }
+    
+    
+    // visualizza sottoalbero di un certo nodo
+    public void stampaSottoAlbero(){ stampaSottoAlbero(root); }
+    public void stampaSottoAlbero(int valore){ stampaSottoAlbero(trovaNodo(root, valore)); }
+    private void stampaSottoAlbero(Nodo root){
+        if (root == null) {
+            return;
+        }
+        
+        System.out.println(root.getInfo());
+        stampaSottoAlbero(root.getSX());
+        stampaSottoAlbero(root.getDX());
+    }
+    
+    
+    // stampa il valore massimo tra i valori delle chiavi
+    public void stampaValoreMax(){ stampaValoreMax(root); }
+    private void stampaValoreMax(Nodo root){
+        if (root == null) {
+            return;
+        }
+
+        if (root.getDX() == null) {
+            System.out.println("Maximum value in the tree is: " + root.getInfo());
+            return;
+        }
+
+        // Keep traversing down the right subtree until we find the maximum value
+        Nodo corrente = root;
+        while (corrente.getDX() != null) {
+            corrente = corrente.getDX();
+        }
+
+        System.out.println("Maximum value in the tree is: " + corrente.getInfo());
+    }
+
+    
     
     
     
