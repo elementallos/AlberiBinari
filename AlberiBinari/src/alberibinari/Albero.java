@@ -41,6 +41,24 @@ public class Albero {
         }
     }
     
+    private void inserisciNodo(Nodo root, Nodo value){
+        if(root == null){
+            root = new Nodo(value.getInfo());
+        }
+        
+        if(value.getInfo() > root.getInfo()){
+            if(root.getDX() == null)
+                root.setDX(new Nodo(value.getInfo()));
+            else
+                inserisciNodo(root.getDX(), value);
+        }else{
+            if(root.getSX() == null)
+                root.setSX(new Nodo(value.getInfo()));
+            else
+                inserisciNodo(root.getSX(), value);
+        }
+    }
+    
     
     // trova altezza massima dell'albero
     public int getAltezza(){ return getAltezza(root); }
@@ -140,8 +158,8 @@ public class Albero {
     }
     
     
-    /*      TRUE: foglie allo stesso livello
-            FALSE: foglie a livelli sfalsati        */
+    /*     TRUE: foglie allo stesso livello        *
+     *     FALSE: foglie a livelli sfalsati        */
     public boolean livelloFoglieUguale(){ return livelloFoglieUguale(root); }
     private boolean livelloFoglieUguale(Nodo root){
         if (root == null) {
@@ -253,6 +271,36 @@ public class Albero {
     }
 
   
+    // stampa foglie dell'albero
+    public void stampaFoglie(){ stampaFoglie(root); }
+    private void stampaFoglie(Nodo root){
+        if (root == null) {
+            return;
+        }
+        
+        if (root.getSX() == null && root.getDX() == null) {
+            System.out.println(root.getInfo());
+        }
+        
+        stampaFoglie(root.getSX());
+        stampaFoglie(root.getDX());
+    }
+    
+    
+    // duplica l'albero
+    public Albero duplicaAlbero(){
+        int numNodi = contaNodi(root);
+        return duplicaAlbero(root, numNodi);
+    }
+    private Albero duplicaAlbero(Nodo root, int nodi){
+        Albero newAlbero = new Albero(root);
+        if(nodi > 0){
+            newAlbero.inserisciNodo(root, root.getDX());
+            newAlbero.inserisciNodo(root, root.getSX());
+        }
+        return newAlbero;
+    }
+    
     
     
     

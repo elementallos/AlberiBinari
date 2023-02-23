@@ -34,15 +34,19 @@ public class AlberiBinari {
 
         };
         int randomArr[] = {
-            1, 6, 7, 2, 0, 4, 7, 2, 4, 8, 5, 3, 4, 1, 9
+            1, 9, 4, 7, 2, 3, 8, 0, 6, 3
         };
         
         
         // actual program -->
-        Albero x = new Albero(new Nodo(oneTo100[0]));
-        for(int n: oneTo100){
+        Albero x = new Albero(new Nodo(randomArr[0]));
+        for(int n: randomArr){
             x.inserisciNodo(n);
         }
+        
+        // duplica l'albero
+        Albero y = x.duplicaAlbero();
+        System.out.println("Albero duplicato!");
         
         // stampa l'altezza dell'albero
         System.out.println("Altezza dell\'albero: " + x.getAltezza());
@@ -72,6 +76,10 @@ public class AlberiBinari {
         
         // ci sono nodi con due figli uguali?
         System.out.println("(int)Somma di tutti i valori dei nodi dell'albero: " + x.sommaValoriNodi());
+        
+        // stampa tutte le foglie dell'albero
+        x.stampaFoglie();
+        
         
         // end program
         System.out.println();
