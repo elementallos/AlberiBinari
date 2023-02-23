@@ -302,6 +302,41 @@ public class Albero {
     }
     
     
+    // elimina solo un nodo, riordinando gli altri successivamente
+    public Nodo eliminaUnNodo(int valore){ return eliminaUnNodo(root, valore); }
+    private Nodo eliminaUnNodo(Nodo root, int valore){
+        if(root == null){
+            return null;
+        }
+        
+        if(valore < root.getInfo()){
+            root.setSX(eliminaUnNodo(root.getSX(), valore));
+        }else if(valore > root.getInfo()){
+            root.setDX(eliminaUnNodo(root.getDX(), valore));
+        }else{
+            if(root.getSX() == null){
+                return root.getDX();
+            }else if(root.getDX() == null){
+                return root.getSX();
+            }
+            
+            Nodo successore = trovaIlMinore(root.getDX());
+            root.setInfo(successore.getInfo());
+            root.setDX(eliminaUnNodo(root.getDX(), successore.getInfo()));
+        }
+        
+        return root;
+    }
+    
+    private Nodo trovaIlMinore(Nodo nodo){
+        while(nodo.getSX() != null){
+            nodo = nodo.getSX();
+        }
+        return nodo;
+    }
+    
+    
+    
     
     
     
